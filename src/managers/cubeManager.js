@@ -1,3 +1,5 @@
+const uniqid = require('uniqid')
+
 const cubes = [{
     name: 'Rubic Cube',
     description: 'test',
@@ -16,8 +18,9 @@ const getAll = () => cubes.slice()
 
 const createCube = (cubeData) =>{
     const newCube = {
-    id: cubes.length+1,
-    ...cubeData}
+    id: uniqid(),
+    ...cubeData,
+}
     cubes.push(newCube)
 
     return newCube
