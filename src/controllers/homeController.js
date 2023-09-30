@@ -4,11 +4,13 @@ const {getAll} = require('../managers/cubeManager')
 const router = express.Router();
 
 router.get('/' , (req,res)=>{
-    res.render('index')
+    const cubes = getAll()
+    res.render('index',{cubes})
 })
 
 router.get('/about', (req,res)=>{
     res.render('about')
 })
+
 
 module.exports = router;
