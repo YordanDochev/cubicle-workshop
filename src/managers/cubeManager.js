@@ -16,7 +16,24 @@ const cubes = [{
   }
 ]
 
-const getAll = () => cubes.slice()
+const getAll = (search, from, to) => {
+  let result = cubes.slice();
+
+  if(search){
+    result = result.filter(cube=> cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+  }
+
+  if(from){
+    result = result.filter(cube=> cube.difficultyLevel >= Number(from))
+
+  }
+
+  if(to){
+    result = result.filter(cube=> cube.difficultyLevel <= Number(to))
+
+  }
+  return result;
+}
 
 const getOne = (id) => cubes.find(cube => cube.id == id)
 
