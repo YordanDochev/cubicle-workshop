@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/' , (req,res)=>{
     const {search, from, to} = req.query
     const cubes = getAll(search, from, to)
-    res.render('index',{cubes})
+    res.render('index',{cubes,search, from, to})
 })
 
 router.get('/about', (req,res)=>{
