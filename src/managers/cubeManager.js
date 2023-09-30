@@ -14,13 +14,10 @@ const cubes = [{
 
 const getAll = () => cubes.slice()
 
-const createCube = (name,description,imageUrl,difficultyLevel) =>{
+const createCube = (cubeData) =>{
     const newCube = {
     id: cubes.length+1,
-    name,
-    description,
-    imageUrl,
-    difficultyLevel}
+    ...cubeData}
     cubes.push(newCube)
 
     return newCube

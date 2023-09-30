@@ -14,7 +14,12 @@ router.post("/create", (req, res) => {
     difficultyLevel 
 } = req.body;
 
-  createCube(name, description, imageUrl, Number(difficultyLevel));
+  createCube({
+    name, 
+    description, 
+    imageUrl, 
+    difficultyLevel: Number(difficultyLevel)
+});
 
   res.redirect("/");
 });
