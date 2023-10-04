@@ -1,4 +1,4 @@
-const uniqid = require('uniqid')
+const Cube = require('../model/Cube')
 
 const cubes = [{
     id: 1,
@@ -16,9 +16,9 @@ const cubes = [{
   }
 ]
 
-const getAll = (search, from, to) => {
-  let result = cubes.slice();
-
+const getAll = async (search, from, to) => {
+  const cubes = await Cube.find().lean();
+  
   if(search){
     result = result.filter(cube=> cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
   }
@@ -32,20 +32,12 @@ const getAll = (search, from, to) => {
     result = result.filter(cube=> cube.difficultyLevel <= Number(to))
 
   }
-  return result;
+  return cubes;
 }
 
-const getOne = (id) => cubes.find(cube => cube.id == id)
+const getOne = (cubeId) => Cube.findById(cubeId);
 
-const createCube = (cubeData) =>{
-    const newCube = {
-    id: uniqid(),
-    ...cubeData,
-}
-    cubes.push(newCube)
-
-    return newCube
-}
+const createCube = (cubeData) => Cube.create(cubeData);
 
 module.exports = {
     getAll,
