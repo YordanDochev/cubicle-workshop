@@ -1,8 +1,10 @@
 const Cube = require('../model/Cube')
 
 const getAll = async (search, from, to) => {
-  const cubes = await Cube.find().lean();
+  let result = await Cube.find().lean();
   
+
+  //To do 
   if(search){
     result = result.filter(cube=> cube.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
   }
@@ -16,7 +18,7 @@ const getAll = async (search, from, to) => {
     result = result.filter(cube=> cube.difficultyLevel <= Number(to))
 
   }
-  return cubes;
+  return result;
 }
 
 const getOne = (cubeId) => Cube.findById(cubeId);
