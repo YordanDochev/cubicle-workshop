@@ -1,5 +1,5 @@
 const express = require("express");
-const { getOne, createCube,attachaccessory } = require("../managers/cubeManager");
+const { getOne, createCube,attachAccessory ,} = require("../managers/cubeManager");
 const {getAllAccessories} = require('../managers/accessoryManager')
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.post("/create", async (req, res) => {
 
 router.get('/:cubeId/details', async (req,res)=>{
   const cube = await getOne(req.params.cubeId).lean();
-
+  console.log(cube);
   if(!cube){
     return res.redirect('/404')
   }
@@ -46,7 +46,7 @@ router.post('/:cubeID/attach-accessory',async (req,res)=>{
 
     const cubeId = req.params.cubeID
 
-    await attachaccessory(cubeId,accessoryId)
+    await attachAccessory(cubeId,accessoryId)
 
     res.redirect(`/cubes/${cubeId}/details`)
 })

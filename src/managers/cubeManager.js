@@ -21,15 +21,15 @@ const getAll = async (search, from, to) => {
   return result;
 }
 
-const getOne = (cubeId) => Cube.findById(cubeId);
+const getOne = (cubeId) => Cube.findById(cubeId).populate('accessories');
 
 const createCube = (cubeData) => Cube.create(cubeData);
 
-const attachaccessory = (cubeId, accessoryId ) => Cube.findByIdAndUpdate(cubeId, {$push:{accessories:accessoryId}})
+const attachAccessory = (cubeId, accessoryId ) => Cube.findByIdAndUpdate(cubeId, {$push:{accessories:accessoryId}})
 
 module.exports = {
     getAll,
     getOne,
     createCube,
-    attachaccessory
+    attachAccessory,
 }
