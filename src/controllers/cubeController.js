@@ -4,7 +4,7 @@ const {getOthers} = require('../managers/accessoryManager')
 const router = express.Router();
 
 router.get("/create", (req, res) => {
-  res.render("create");
+  res.render("cubes/create");
 });
 
 router.post("/create", async (req, res) => {
@@ -29,7 +29,7 @@ router.get('/:cubeId/details', async (req,res)=>{
   if(!cube){
     return res.redirect('/404')
   }
-  res.render('details',{cube})
+  res.render('cubes/details',{cube})
 });
 
 router.get('/:cubeID/attach-accessory' ,async(req,res)=>{
