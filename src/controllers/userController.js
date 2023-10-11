@@ -10,6 +10,12 @@ router.post('/register',async (req,res)=>{
     
     await userManager.register({username,password,repeatPassword})
 
+    res.redirect('/users/login')
+})
+
+router.get('/login',(req,res)=>{
+    res.render('users/login')
+
     res.redirect('/')
 })
 
