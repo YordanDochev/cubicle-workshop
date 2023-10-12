@@ -27,9 +27,15 @@ const createCube = (cubeData) => Cube.create(cubeData);
 
 const attachAccessory = (cubeId, accessoryId ) => Cube.findByIdAndUpdate(cubeId, {$push:{accessories:accessoryId}})
 
+const deleteCube = (cubeId) => Cube.findByIdAndDelete(cubeId)
+
+const updateCube = (cubeId,cubeData) => Cube.findByIdAndUpdate(cubeId,cubeData);
+
 module.exports = {
     getAll,
     getOne,
     createCube,
     attachAccessory,
+    deleteCube,
+    updateCube,
 }
