@@ -4,6 +4,8 @@ const {getOthers} = require('../managers/accessoryManager')
 const router = express.Router();
 
 router.get("/create", (req, res) => {
+
+  console.log(req.user);
   res.render("cubes/create");
 });
 

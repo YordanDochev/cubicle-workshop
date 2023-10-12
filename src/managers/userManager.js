@@ -1,8 +1,8 @@
 const User = require('../model/User')
 const bcrypt = require('bcrypt')
 const jwt = require('../lib/jwt')
+const {SECRET} = require('../config/const')
 
-const secret = 'qZX5Fo0aUl1z4J6DRQr130rQ39CsE9'
 
 exports.register = async (userData) => {
     
@@ -27,7 +27,7 @@ exports.login = async (username,password) => {
         username: user.username
     }
 
-    const token = await jwt.sign(payload,secret,{expiresIn:'2d'})
+    const token = await jwt.sign(payload,SECRET,{expiresIn:'2d'})
 
     return token;
 }
