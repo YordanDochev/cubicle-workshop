@@ -20,7 +20,8 @@ router.post("/create", async (req, res) => {
     name, 
     description, 
     imageUrl, 
-    difficultyLevel: Number(difficultyLevel)
+    difficultyLevel: Number(difficultyLevel),
+    cubeOwner: req.user?._id
 });
 
   res.redirect("/");
