@@ -1,4 +1,5 @@
 const express = require("express");
+const {extractErrorMessages} = require("../utils/errorHelper")
 const { getDifficultyLevelViewData } = require("../utils/viewHelper");
 const {
   getOne,
@@ -17,16 +18,21 @@ router.get("/create", isAuthenticated, (req, res) => {
 
 router.post("/create", isAuthenticated,async (req, res) => {
   const { name, description, imageUrl, difficultyLevel } = req.body;
-
-  await createCube({
-    name,
-    description,
-    imageUrl,
-    difficultyLevel: Number(difficultyLevel),
-    cubeOwner: req.user?._id,
-  });
-
-  res.redirect("/");
+  try {
+    await createCube({
+      name,
+      description,
+      imageUrl,
+      difficultyLevel: Number(difficultyLevel),
+      cubeOwner: req.user?._id,
+    });
+  
+    res.redirect("/");
+  } catch (error) {
+    const errorMessages = extractErrorMessages(error);
+    res.status(404).render("cubes/create",{errorMessages})
+  }
+  
 });
 
 router.get("/:cubeId/details", async (req, res) => {
