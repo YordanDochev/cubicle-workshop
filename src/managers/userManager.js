@@ -5,9 +5,7 @@ const { SECRET } = require("../config/const");
 
 exports.getOneUser = (username) => User.findOne({username})
 
-exports.register = async (userData) => {
-  User.create(userData);
-};
+exports.register = (userData) => User.create(userData)
 
 exports.login = async (username, password) => {
   const user = await User.findOne({ username });
