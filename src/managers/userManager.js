@@ -11,13 +11,13 @@ exports.login = async (username, password) => {
   const user = await User.findOne({ username });
 
   if (!user) {
-    throw new Error("Do not have register user with this username or password");
+    throw new Error("Do not have user with this username or password");
   }
 
   const isValid = await bcrypt.compare(password, user.password);
 
   if (!isValid) {
-    throw new Error("Do not have register user with this username or password");
+    throw new Error("Do not have user with this username or password");
   }
 
   const payload = {
