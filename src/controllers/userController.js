@@ -16,15 +16,6 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     console.log(error);
     const errorMessages = extractErrorMessages(error)
-    // console.log(error);
-    // let errorMessages = [];
-    // if(error.name === 'ValidationError'){
-    //   Object.keys(error.errors).forEach((key)=>{
-    //     errorMessages.push(error.errors[key].message)
-    //     // errorMessages[index] = error.errors[key].message
-    //   })
-    // }
-    // console.log(errorMessages);
     res.status(404).render("users/register",{errorMessages});
   }
 });
